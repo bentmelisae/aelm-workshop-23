@@ -10,14 +10,18 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Set up Go
-      uses: actions/setup-go@v4
-      with:
-        go-version: '1.21.x'
-
-    - name: Build
-      run: cd workshop-service && go build ov ../workshop-service
-
-    - name: Test
-      run: go test -v ./workshop-service
+      - uses: actions/checkout@v4
+      - name: Setup Go 1.21.x
+        uses: actions/setup-go@v4
+        with:
+          go-version: 1.21.x
+      - name: Build
+        run: go build -o ../bin/workshop -v ./...
+        working-directory: workshop-service
+      - name: Upload /bin folder as artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: workshop
+          path: bin/
+          retention-days: 1
 
