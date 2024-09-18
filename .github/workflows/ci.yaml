@@ -16,8 +16,8 @@ jobs:
         go-version: '1.21.x'
 
     - name: Build
-      run: cd workshop-service && go build ov ../bin/workshop
+      run: cd workshop-service && go build ov ../workshop-service
 
     - name: Test
-      run: go test -v ../bin/workshop
+      run: go test -v ./workshop-service
 
