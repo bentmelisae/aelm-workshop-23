@@ -10,15 +10,15 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-    
+
     env:
       version: 1.21.x
     steps:
       - uses: actions/checkout@v4
-      - name: Setup Go {{$env.version}}
+      - name: Setup Go ${{env.version}}
         uses: actions/setup-go@v4
         with:
-          go-version: {{$env.version}}
+          go-version: ${{env.version}}
       - name: Build
         run: go build -o ../bin/workshop -v ./...
         working-directory: workshop-service
