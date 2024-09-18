@@ -5,13 +5,14 @@ on:
     branches:
       - '**'
 
-env:
-  version: 1.21.x
+
 
 jobs:
   build:
     runs-on: ubuntu-latest
-
+    
+    env:
+      version: 1.21.x
     steps:
       - uses: actions/checkout@v4
       - name: Setup Go {{$env.version}}
