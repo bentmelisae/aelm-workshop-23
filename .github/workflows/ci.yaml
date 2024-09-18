@@ -5,16 +5,19 @@ on:
     branches:
       - '**'
 
+env:
+  version: 1.21.x
+
 jobs:
   build:
     runs-on: ubuntu-latest
 
     steps:
       - uses: actions/checkout@v4
-      - name: Setup Go 1.21.x
+      - name: Setup Go {{$env.version}}
         uses: actions/setup-go@v4
         with:
-          go-version: 1.21.x
+          go-version: {{$env.version}}
       - name: Build
         run: go build -o ../bin/workshop -v ./...
         working-directory: workshop-service
